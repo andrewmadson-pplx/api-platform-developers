@@ -71,7 +71,7 @@ See [Image Search](https://docs.perplexity.ai/docs/agent-api/tools/image-search)
 | `top_k` | REMOVE | No equivalent. |
 | `n` | REMOVE | Only single-sample; run N requests if needed. |
 | `logprobs`, `top_logprobs` | REMOVE | Some such fields are accepted but have no effect; do not carry them over. |
-| `web_search_options.search_type` / pro search | REMOVE | Use `max_steps` (1..100) or a preset for multi-step behavior. |
+| `web_search_options.search_type` / pro search | REMOVE | Use `max_steps` (1..500) or a preset for multi-step behavior. |
 | `search_language_filter` | REMOVE | No equivalent. |
 | `return_videos`, `num_videos`, `media_response` | REMOVE | No equivalent. |
 | `search_mode`, `web_search_options` (the container fields themselves) | REMOVE | Contents relocate per the table above; the containers must not remain. |
@@ -116,7 +116,7 @@ Only remove the feature if none of these fit, and call the removal out in the mi
 
 - `preset` - a named configuration bundling model, tools, and behavior; see [models-and-presets.md](models-and-presets.md).
 - `models` - fallback list, max 5, tried in order; `response.model` echoes the served one.
-- `max_steps` - 1..100, caps multi-step agentic behavior.
+- `max_steps` - 1..500, caps multi-step agentic behavior.
 - `max_tool_calls` - `0` disables all tool calls.
 - `previous_response_id` - chains turns; requires the prior response to have `status:"completed"` and the same account; works even with `store:false`.
 - `background` - `true` returns immediately with `status:"queued"`; see [response-and-streaming.md](response-and-streaming.md).
@@ -135,5 +135,5 @@ Only remove the feature if none of these fit, and call the removal out in the mi
 | MCP servers | <= 16 |
 | `fetch_url` tool | `max_urls` 1..10; `total_budget_tokens` <= 120000 |
 | `max_output_tokens` | floor 16 |
-| `max_steps` | 1..100 |
+| `max_steps` | 1..500 |
 | Rate limits | Vary by tier; on 429 (`request_rate_limit_exceeded`) retry with backoff and honor the `X-RateLimit-*` headers |
